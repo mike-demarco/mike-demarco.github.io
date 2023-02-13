@@ -1,36 +1,115 @@
-<!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
-
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en" dir="ltr">
 	<head>
 		<meta charset="UTF-8">
-			<!--<title> Subscription Form | CodingLab </title>--->
 		<link rel="stylesheet" href="themorningdovewebsite.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-<body>
-	<div class="container">
-	  <h1>The Morning Dove</h1>
-	  <form target="_blank" action="https://formsubmit.co/4cea75914f2ac8cd48f58212ae992003" method="POST">
-	  <p>Sign up for bird photos flown straight into your inbox.</p>
-		<div class="form-group">
-		  <div class="form-row">
-			<div class="col">
-			  <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-			</div>
-			<div class="col">
-			  <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-			</div>
-		  </div>
+	</head>
+	<style>
+		#mydiv {
+		position: absolute;
+		z-index: 9;
+		background-color: #f1f1f1;
+		text-align: center;
+		border: 1px solid #d3d3d3;
+		}
+		
+		#mydivheader {
+		padding: 0px;
+		cursor: move;
+		z-index: 0;
+		background-color: #2196F3;
+		color: #fff;
+		}
+	</style>
+	<body>
+		
+		<div id="mydiv" style="top: 84px; left: 457px;">
+			<div id="mydivheader">Click here to move</div>
+			<div class="">
+				<h1 style="background-image: url('1.jpg'); color:#A2B9BC;">The Morning Dove</h1>
+				<h3 style="background-image: url('2.jpg'); color:#CFC486">Sign up for bird photos flown straight into your inbox.</h3>
+				<form target="_blank" action="https://formsubmit.co/4cea75914f2ac8cd48f58212ae992003" method="POST">
+					<div class="form-group">
+						<div class="form-row" style="background-image: url('3.jpg');">
+							<input type="text" name="name" class="form-control" placeholder="Full Name" required>
+						</div>	
+						<div class="form-row" style="background-image: url('4.jpg');">
+							<input type="email" name="email" class="form-control" placeholder="Email Address" required>
+						</div>
+						<div class="form-row" style="background-image: url('5.jpg');">
+							<textarea placeholder="Your Message" class="form-control" name="message" rows="5" cols="40" required></textarea>
+						</div>
+						<div class="form-row" style="background-image: url('6.jpg'); color:#DDE3D5;">
+							Winged-Creature:
+							<input type="radio" name="winged-creature" value="bird">bird</input>
+							<input type="radio" name="winged-creature" value="birb">birb</input>
+							<input type="radio" name="winged-creature" value="borb">borb</input>
+							<input type="radio" name="winged-creature" value="borb">borbus</input>
+						</div>
+						<div class="form-row" style="background-image: url('15.jpg');">
+							<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
+						</div>
+					</div>
+				</form>
+				<p style="background-image: url('7.jpg'); color:#DDE3E5;">Hello, my name is Mike DeMarco.</p>
+				<p style="background-image: url('16.jpg'); color:#DDE3E5;">I send out a weekly newsletter with birding photos, <span style="color:#A2B9BC"><strong>The Morning Dove</strong></span></p>
+				<p style="background-image: url('10.jpg'); color:#DDE3E5;"> Sign up above ^</p>
+				<p style="background-image: url('11.jpg'); color:#DDE3E5;">Links to my other digital selves can be found below. Click the word:</p>
+				<ul>
+					<li style="background-image: url('12.jpg'); color:#739072;"><a href="https://www.are.na/mike-demarco" style="color:#739072;">Are.na</a></li>
+					<li style="background-image: url('14.jpg'); color:#DDE3E5;"><a href="https://twitter.com/demarcooooo" style="color:#DDE3E5;">Twitter</a></li>
+					<li style="background-image: url('13.jpg'); color:#DDE3E5;"><a href="https://github.com/mike-demarco" style="color:#DDE3E5;">Github</a></li>
+				</ul>
+				</div>
 		</div>
-		<div class="form-group">
-		  <textarea placeholder="Your Message" class="form-control" name="message" rows="10" required></textarea>
-		</div>
-		<button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
-	  </form>
-	</div>
+		
+		<script>
+			//Make the DIV element draggagle:
+			dragElement(document.getElementById("mydiv"));
+			
+			function dragElement(elmnt) {
+			var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+			if (document.getElementById(elmnt.id + "header")) {
+				/* if present, the header is where you move the DIV from:*/
+				document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+				} else {
+				/* otherwise, move the DIV from anywhere inside the DIV:*/
+				elmnt.onmousedown = dragMouseDown;
+			}
+			
+			function dragMouseDown(e) {
+				e = e || window.event;
+				e.preventDefault();
+				// get the mouse cursor position at startup:
+				pos3 = e.clientX;
+				pos4 = e.clientY;
+				document.onmouseup = closeDragElement;
+				// call a function whenever the cursor moves:
+				document.onmousemove = elementDrag;
+			}
+			
+			function elementDrag(e) {
+				e = e || window.event;
+				e.preventDefault();
+				// calculate the new cursor position:
+				pos1 = pos3 - e.clientX;
+				pos2 = pos4 - e.clientY;
+				pos3 = e.clientX;
+				pos4 = e.clientY;
+				// set the element's new position:
+				elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+				elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+			}
+			
+			function closeDragElement() {
+				/* stop moving when mouse button is released:*/
+				document.onmouseup = null;
+				document.onmousemove = null;
+			}
+		}
+	</script>
+	
 </body>
 </html>
-
